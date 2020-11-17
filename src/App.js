@@ -16,30 +16,29 @@ const foodILike = [
   }
 ]
 
-function Food({fav, picture, rating}) {
-  return (
-  <div>
-    <h3>I love {fav}</h3>
-    <h4>{rating}/5.0</h4>
-    <img src={picture}  alt={fav} />
-  </div>
-  );
-}
+class App extends React.Component{
 
-Food.propTypes = {
-  fav :PropTypes.string.isRequired,
-  picture :PropTypes.string.isRequired,
-  rating :PropTypes.number.isRequired
-};
 
-function App() {
+  state = {
+    count:0
+  };
+  add = () => {
+    this.setState(current => ({count : current.count+1}));
+  };
+  minus = () => {
+    this.setState(current => ({count : current.count-1}));
+  };
+  render(){
   return (
-    <div className="App">
-      <h1>Hello </h1>
-        {foodILike.map(dish => <Food key={dish.id} fav ={dish.name} picture={dish.image} rating={dish.rating} />)}
+    <div>
+      <h1>Im a class {this.state.count}</h1>
+      <button onClick={this.add}>Add</button>
+      <button  onClick={this.minus}>Minus</button>
     </div>
-  );
-}
 
+    
+    )
+  };
+}
 
 export default App;
